@@ -9,6 +9,7 @@ const (
 )
 
 type Vehicle struct {
-	LicensePlate string
-	Type         VehicleType
+	VehicleID    int         `json:"vehicle_id"`
+	LicensePlate string      `json:"license_plate"`
+	Type         VehicleType `json:"type"`
 }
