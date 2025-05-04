@@ -15,10 +15,28 @@ type Admin struct {
 	User `json:"user"`
 }
 
-func (a *Admin) GenerateTicket(vehicle Vehicle) ParkingTicket {
-	// get all available parking spots and assign the vehicle to the first one
+func (a *Admin) GenerateTicket(vehicle Vehicle, parkingLevel []ParkingLevel) *ParkingTicket {
 
-	return ParkingTicket{}
+	// get all available parking spots and assign the vehicle to the first one
+	var spotID int
+	parkingLevel0 := parkingLevel[0]
+	for i := range parkingLevel0.ParkingSpots {
+		if !parkingLevel0.ParkingSpots[i].IsOccupied {
+			spotID = parkingLevel0.ParkingSpots[i].SpotID
+			parkingLevel0.ParkingSpots[i].MarkAsOccupied()
+			break
+		}
+	}
+
+	parkingTicket := &ParkingTicket{
+		TicketID:      1,
+		VehicleID:     vehicle.VehicleID,
+		SpotID:        spotID,
+		EntryTime:     1,
+		PaymentStatus: Pending,
+	}
+
+	return parkingTicket
 }
 
 func (a *Admin) ResolveTicket(ticket ParkingTicket) float64 {
@@ -27,7 +45,9 @@ func (a *Admin) ResolveTicket(ticket ParkingTicket) float64 {
 	// Update the payment status to completed
 	// Release the parking spot
 	// return the total amount
-	return 0.0
+	totalTime := float64(ticket.ExitTime) - float64(ticket.EntryTime)
+	perHourCharge := 10
+	return totalTime * float64(perHourCharge)
 }
 
 type Customer struct {

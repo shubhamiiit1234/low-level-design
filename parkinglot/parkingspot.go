@@ -28,3 +28,7 @@ func (ps *ParkingSpot) ReleaseVehicle(time string) {
 	ps.IsOccupied = false
 	ps.ReleasedTime = time
 }
+
+func (ps *ParkingSpot) MarkAsOccupied() {
+	ps.IsOccupied = true
+}

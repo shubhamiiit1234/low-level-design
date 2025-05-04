@@ -1,9 +1,16 @@
 package main
 
+type GateType string
+
+const (
+	EntryGateType GateType = "Entry"
+	ExitGateType  GateType = "Exit"
+)
+
 type Gate struct {
-	GateID   int    `json:"gate_id"`
-	GateType string `json:"gate_type"`
-	AdminID  int    `json:"admin_id"`
+	GateID   int      `json:"gate_id"`
+	GateType GateType `json:"gate_type"`
+	Admin    Admin    `json:"admin"`
 }
 
 type EntryGate struct {

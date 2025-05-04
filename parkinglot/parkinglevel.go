@@ -8,10 +8,13 @@ type ParkingLevel struct {
 }
 
 func NewParkingLevel(parkingLevelID, totalSlots int) *ParkingLevel {
+
+	parkingSpots := make([]ParkingSpot, totalSlots)
+
 	return &ParkingLevel{
 		ParkingLevelID: parkingLevelID,
 		TotalSlots:     totalSlots,
-		ParkingSpots:   make([]ParkingSpot, totalSlots),
+		ParkingSpots:   parkingSpots,
 		AvailableSlots: totalSlots,
 	}
 }
@@ -23,4 +26,8 @@ func (pl *ParkingLevel) AddParkingSpot(spot ParkingSpot) {
 
 func (pl *ParkingLevel) RemoveParkingSpot(spotID int) {
 	// TODO
+}
+
+func (pl *ParkingLevel) GetParkingSpots(parkingLevel ParkingLevel) []ParkingSpot {
+	return pl.ParkingSpots
 }
