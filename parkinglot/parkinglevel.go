@@ -5,5 +5,4 @@ type ParkingLevel struct {
 	TotalSlots     int           `json:"total_slots"`
 	ParkingSpots   []ParkingSpot `json:"parking_spots"`
 	AvailableSlots int           `json:"available_slots"`
-	OccupiedSlots  int           `json:"occupied_slots"`
 }
