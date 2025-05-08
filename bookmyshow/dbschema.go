@@ -2,16 +2,9 @@ package main
 
 /*
 
-// City
-// 	- city_id
-// 	- city_name
-// 	-
-
 Movie
 	- movie_id			int (PK)		//will be UUID in real
 	- movie_name		varchar
-	- city_name			varchar
-	- theatre_id		int
 	- type				varchar
 	- rating			float
 	- review			varchar
@@ -30,16 +23,12 @@ Request
 					{
 						"movie_id": 1,
 						"movie_name": "insidious",
-						"city": "Bangalore",
-						"theatre_id": "t1",
 						.
 						.
 					},
 					{
 						"movie_id": 2,
 						"movie_name": "insidious-2",
-						"city": "Bangalore",
-						"theatre_id": "t2",
 						.
 						.
 					},
@@ -74,6 +63,20 @@ Response
 					.
 				]
 	}
+
+City
+	- city_id		int (PK)
+	- city_name		varchar
+	- theatre_id	int (FK)
+	- movie_id		int (FK)
+
+Theatre
+	- theatre_id	int (PK)
+	- show_id	int (FK)
+	- location
+	- type		varchar (PVR, CINEPOLIS)
+
+JOIN City and Theatre
 
 Show
 	- show_id	int (PK)	-	will be UUID in real
@@ -139,6 +142,8 @@ Response
 					.
 				]
 	}
+
+
 
 Booking
 	- booking_id 	int (PK)
