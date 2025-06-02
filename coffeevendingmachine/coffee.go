@@ -1,7 +1,8 @@
 package main
 
-type Coffee interface {
-	GetPrice() float64
-	// SetPrice(price float64)
-	SetRecipe(recipe Recipe)
+// Strategy Pattern
+type CoffeeType interface {
+	GetPrice() int
+	GetRecipe() Recipe
+	GetCoffee() CoffeeType
 }

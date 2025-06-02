@@ -1,6 +1,13 @@
 package main
 
+const (
+	Sugar  string = "SUGAR"
+	Coffee string = "COFFEE"
+	Milk   string = "MILK"
+	Water  string = "WATER"
+)
+
 type Ingredient struct {
-	Milk  string
-	Sugar string
+	Name     string
+	Quantity int
 }
