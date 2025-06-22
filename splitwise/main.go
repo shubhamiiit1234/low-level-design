@@ -61,10 +61,12 @@ func main() {
 	// Create Expense
 	splitwise.AddExpense(user1.UserID, group.GroupId, "Month May Rent", []*User{user1, user2, user3}, 12000, &EqualSplit{})
 
+	// View Balance
 	splitwise.ViewBalances(user1)
 	splitwise.ViewBalances(user2)
 	splitwise.ViewBalances(user3)
 
+	// Settle Balance for a user
 	splitwise.SettleBalance(user2, group.Expenses[0])
 	splitwise.ViewBalances(user2)
 	splitwise.ViewBalances(user3)
