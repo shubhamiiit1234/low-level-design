@@ -20,8 +20,8 @@ func NewUser(id, name, email string) *User {
 	}
 }
 
-func (u *User) SettleBalance(expense Expense) {
-	amountToBePaid := expense.Amount
+func (u *User) SettleBalance(expense *Expense) {
+	amountToBePaid := u.Balances[expense.PaidBy]
 	receiverUserId := expense.PaidBy
 	// Logic to pay
 	u.Balances[receiverUserId] -= amountToBePaid

@@ -64,4 +64,8 @@ func main() {
 	splitwise.ViewBalances(user1)
 	splitwise.ViewBalances(user2)
 	splitwise.ViewBalances(user3)
+
+	splitwise.SettleBalance(user2, group.Expenses[0])
+	splitwise.ViewBalances(user2)
+	splitwise.ViewBalances(user3)
 }
