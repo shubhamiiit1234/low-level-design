@@ -40,8 +40,7 @@ func (s *Splitwise) ViewBalances(user *User) {
 	u.ViewBalances()
 }
 
-func (s *Splitwise) SettleBalance(user User, expense Expense) {
+func (s *Splitwise) SettleBalance(user *User, expense *Expense) {
 	u := s.Users[user.UserID]
 	u.SettleBalance(expense)
-	s.ViewBalances(&user)
 }
