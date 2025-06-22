@@ -22,9 +22,10 @@ func (s *Splitwise) AddGroup(group *Group) {
 	s.Groups[group.GroupId] = group
 }
 
-func CreateGroup(name string, participants []*User) {
+func (s *Splitwise) CreateGroup(name string, participants []*User) *Group {
 	group := NewGroup(name, participants)
 	fmt.Println("Group: ", group)
+	return group
 }
 
 func (s *Splitwise) AddExpense(paidBy, groupID, description string, participants []*User, amount float64, splitStrategy SplitStrategy) {
