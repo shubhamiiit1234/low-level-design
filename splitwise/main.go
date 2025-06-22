@@ -54,7 +54,7 @@ func main() {
 	splitwise.AddUser(user3)
 
 	// Create Group
-	group := NewGroup("Apartment", []*User{user1, user2, user3})
+	group := splitwise.CreateGroup("Apartment", []*User{user1, user2, user3})
 	fmt.Println("Group ID: ", group.GroupId)
 	splitwise.AddGroup(group)
 
