@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 /*
 	Requirements:
@@ -32,5 +35,28 @@ import "fmt"
 */
 
 func main() {
-	fmt.Println("PubSub LLD")
+	fmt.Println("PubSub LLD!!!")
+
+	messageBroker := NewMessageBroker()
+
+	subscriber1 := NewSubscriber("S1")
+	subscriber2 := NewSubscriber("S2")
+
+	go messageBroker.Listen(subscriber1)
+	go messageBroker.Listen(subscriber2)
+
+	messageBroker.AddTopic("T1", "Sports")
+
+	messageBroker.AddSubscriberToTopic(subscriber1, "Sports")
+	messageBroker.AddSubscriberToTopic(subscriber2, "Sports")
+
+	messageBroker.Publish("Sports", "Runs 120!!!")
+	messageBroker.Publish("Sports", "Runs 121!!!")
+	messageBroker.Publish("Sports", "Runs 122!!!")
+	messageBroker.Publish("Sports", "Runs 124!!!")
+	messageBroker.Publish("Sports", "Runs 125!!!")
+	messageBroker.Publish("Sports", "Runs 128!!!")
+
+	time.Sleep(1 * time.Second)
+
 }
