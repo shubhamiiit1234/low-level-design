@@ -16,16 +16,17 @@ import (
 
 	Core Entities:
 		1. Subject interface
-			- Register(), DeRegister(), Notify(msg)
+			- Register(), DeRegister(), NotifyAll(msg)
 		2. Topic (implements Subject)
-			- Name, []Observer, chan, mutex
-			- CreateTopic(name),
+			- Id, Name, []Observer, chan, mutex
+			- CreateTopic(name), AddMessage(), Start()
 		3. Observer interface
 			- Update(msg)
 		4. Subscriber (implements Observer)
 			- Id, chan
 		5. MessageBroker
 			- map[string]*Topic, mutex
+			- AddSubscriberToTopic(observer, topicID), Publish(topicID, msg), AddTopic(topicID, topicName)
 
 	Flow:
 		Producer produces/adds a message to a topic (into its channel) -> A go routine Notifies all the subcribers of that topic (call Update()) ->
