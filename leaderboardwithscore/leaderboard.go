@@ -23,6 +23,10 @@ func NewLeaderBoard() *Leaderboard {
 
 func (l *Leaderboard) AddUser(user *User) {
 	l.mu.Lock()
+	if _, exist := l.Users[user.ID]; exist {
+		fmt.Println("User already present!!")
+		return
+	}
 	l.Users[user.ID] = user
 	fmt.Println("added")
 	l.TopUsers.Insert(user.ID, -float64(user.Score))
