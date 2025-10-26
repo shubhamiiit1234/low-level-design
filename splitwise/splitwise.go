@@ -15,7 +15,7 @@ func NewSplitwise() *Splitwise {
 }
 
 func (s *Splitwise) AddUser(user *User) {
-	s.Users[user.UserID] = user
+	s.Users[user.ID] = user
 }
 
 func (s *Splitwise) AddGroup(group *Group) {
@@ -37,11 +37,11 @@ func (s *Splitwise) AddExpense(paidBy, groupID, description string, participants
 }
 
 func (s *Splitwise) ViewBalances(user *User) {
-	u := s.Users[user.UserID]
+	u := s.Users[user.ID]
 	u.ViewBalances()
 }
 
 func (s *Splitwise) SettleBalance(user *User, expense *Expense) {
-	u := s.Users[user.UserID]
+	u := s.Users[user.ID]
 	u.SettleBalance(expense)
 }

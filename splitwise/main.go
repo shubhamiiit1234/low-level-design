@@ -49,13 +49,16 @@ func main() {
 	user1 := NewUser("1", "Alice", "alice@example.com")
 	user2 := NewUser("2", "Bob", "bob@example.com")
 	user3 := NewUser("3", "Charlie", "charlie@example.com")
+
 	fmt.Println("user1 id: ", user1.ID, "user2 id: ", user2.ID, "user3 id: ", user3.ID)
+
 	splitwise.AddUser(user1)
 	splitwise.AddUser(user2)
 	splitwise.AddUser(user3)
 
 	// Create Group
 	group := splitwise.CreateGroup("Apartment", []*User{user1, user2, user3})
+
 	fmt.Println("Group ID: ", group.GroupId)
 	splitwise.AddGroup(group)
 
