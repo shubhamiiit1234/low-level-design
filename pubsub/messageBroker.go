@@ -6,14 +6,13 @@ import (
 )
 
 type MessageBroker struct {
-	Topics map[string]*Topic
+	Topics map[string]*Topic // topicName -> topic
 	mu     sync.RWMutex
 }
 
 func NewMessageBroker() *MessageBroker {
 	return &MessageBroker{
 		Topics: map[string]*Topic{},
-		mu:     sync.RWMutex{},
 	}
 }
 

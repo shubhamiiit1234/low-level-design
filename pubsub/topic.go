@@ -19,7 +19,6 @@ func NewTopic(id, name string) *Topic {
 		Name:        name,
 		ch:          make(chan string, 5),
 		Subscribers: []Observer{},
-		mu:          sync.RWMutex{},
 	}
 }
 
@@ -31,6 +30,8 @@ func (t *Topic) Register(observer Observer) {
 }
 
 func (t *Topic) DeRegister(observer Observer) {
+	t.mu.Lock()
+	defer t.mu.Unlock()
 	for i, obs := range t.Subscribers {
 		if obs == observer {
 			t.Subscribers = append(t.Subscribers[:i], t.Subscribers[i+1:]...)

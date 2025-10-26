@@ -8,7 +8,7 @@ import (
 /*
 	Requirements:
 		1. Publishers should be able to publish messages to a topic
-		2. Subscribers should be able to suscribe to topics
+		2. Subscribers should be able to subscribe to topics
 		3. Subscribers should be able to receive messages published to those topics
 		4. Multiple Publishers and Subscribers
 		5. Messages should be delivered to all subscribers of a topic in real time
@@ -29,9 +29,9 @@ import (
 			- AddSubscriberToTopic(observer, topicID), Publish(topicID, msg), AddTopic(topicID, topicName)
 
 	Flow:
-		Producer produces/adds a message to a topic (into its channel) -> A go routine Notifies all the subcribers of that topic (call Update()) ->
+		Producer produces/adds a message to a topic (into its channel) -> A goroutine Notifies all the subcribers of that topic (call Update()) ->
 																		-> Update() sends the message to the channels of each subscribers ->
-																		-> A go routine Listen() will read the message from the channels
+																		-> A goroutine Listen() will read the message from the channels
 
 */
 
