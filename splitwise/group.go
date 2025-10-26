@@ -22,7 +22,7 @@ func NewGroup(name string, participants []*User) *Group {
 	}
 }
 
-func (g *Group) AddMember(groupId string, user User) {
+func (g *Group) AddMember(user User) {
 	g.Participants = append(g.Participants, &user)
 	fmt.Println("user ", user.Name, " added to the group")
 }

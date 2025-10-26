@@ -28,7 +28,8 @@ import "fmt"
 			- UpdateUser(id string) (TBD)
 		2. Group
 			- CreateGroup(users []User)
-			- AddUser(groupId string, user User)
+			- AddMember(user User)
+			- AddExpense(expense *Expense)
 			- DeleteGroup(groupId string) (TBD)
 		3. Expense
 			- AddExpense(paidBy string, groupId string, users []User, amount int)
@@ -48,7 +49,7 @@ func main() {
 	user1 := NewUser("1", "Alice", "alice@example.com")
 	user2 := NewUser("2", "Bob", "bob@example.com")
 	user3 := NewUser("3", "Charlie", "charlie@example.com")
-	fmt.Println("user1 id: ", user1.UserID, "user2 id: ", user2.UserID, "user3 id: ", user3.UserID)
+	fmt.Println("user1 id: ", user1.ID, "user2 id: ", user2.ID, "user3 id: ", user3.ID)
 	splitwise.AddUser(user1)
 	splitwise.AddUser(user2)
 	splitwise.AddUser(user3)
@@ -59,7 +60,7 @@ func main() {
 	splitwise.AddGroup(group)
 
 	// Create Expense
-	splitwise.AddExpense(user1.UserID, group.GroupId, "Month May Rent", []*User{user1, user2, user3}, 12000, &EqualSplit{})
+	splitwise.AddExpense(user1.ID, group.GroupId, "Month May Rent", []*User{user1, user2, user3}, 12000, &EqualSplit{})
 
 	// View Balance
 	splitwise.ViewBalances(user1)

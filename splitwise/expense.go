@@ -7,7 +7,7 @@ import (
 )
 
 type Expense struct {
-	ExpenseId     string
+	Id            string
 	PaidBy        string
 	Amount        float64
 	Description   string
@@ -19,7 +19,7 @@ type Expense struct {
 func NewExpense(paidBy, grouptId, description string, participants []*User, amount float64, splitStrategy SplitStrategy) *Expense {
 	fmt.Println("split list: ", splitStrategy.ComputeSplits(amount, participants))
 	return &Expense{
-		ExpenseId:     uuid.NewString(),
+		Id:            uuid.NewString(),
 		PaidBy:        paidBy,
 		Amount:        amount,
 		Description:   description,
