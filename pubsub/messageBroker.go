@@ -16,6 +16,20 @@ func NewMessageBroker() *MessageBroker {
 	}
 }
 
+func (m *MessageBroker) AddTopic(id, topicName string) {
+	m.mu.Lock()
+	defer m.mu.Unlock()
+	if _, exist := m.Topics[topicName]; exist {
+		fmt.Println("Topic ", topicName, " already exists!!!")
+		return
+	}
+
+	newTopic := NewTopic(id, topicName)
+	m.Topics[topicName] = newTopic
+
+	go newTopic.Start()
+}
+
 func (m *MessageBroker) AddSubscriberToTopic(observer Observer, topicName string) {
 	m.mu.RLock()
 	topic, exist := m.Topics[topicName]
@@ -26,20 +40,6 @@ func (m *MessageBroker) AddSubscriberToTopic(observer Observer, topicName string
 		return
 	}
 	topic.Register(observer)
-}
-
-func (m *MessageBroker) AddTopic(id, topicName string) {
-	m.mu.Lock()
-	if _, exist := m.Topics[topicName]; exist {
-		fmt.Println("Topic ", topicName, " already exists!!!")
-		return
-	}
-
-	newTopic := NewTopic(id, topicName)
-	m.Topics[topicName] = newTopic
-	m.mu.Unlock()
-
-	go newTopic.Start()
 }
 
 func (m *MessageBroker) Publish(topicName, msg string) {
