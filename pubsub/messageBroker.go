@@ -5,6 +5,13 @@ import (
 	"sync"
 )
 
+/*
+	We can create another PublisherService which will have the MessageBroker
+	and it will call its Publish() method inside anothe method like AnnounceResult()
+
+	In this way it can be converted into a Notification System!!
+*/
+
 type MessageBroker struct {
 	Topics map[string]*Topic // topicName -> topic
 	mu     sync.RWMutex

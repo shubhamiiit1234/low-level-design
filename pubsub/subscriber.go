@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+// We can change it to NotificationService and rest will be the same
 type Subscriber struct {
 	ID string
 	ch chan string
