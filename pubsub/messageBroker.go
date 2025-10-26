@@ -19,7 +19,7 @@ func NewMessageBroker() *MessageBroker {
 func (m *MessageBroker) AddSubscriberToTopic(observer Observer, topicName string) {
 	m.mu.RLock()
 	topic, exist := m.Topics[topicName]
-	defer m.mu.RUnlock()
+	m.mu.RUnlock()
 
 	if !exist {
 		fmt.Println("Topic doesn't exist!!!")
