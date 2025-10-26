@@ -38,10 +38,13 @@ func (l *Leaderboard) AddScore(userID string, score int) {
 	defer l.mu.Unlock()
 	user, exist := l.Users[userID]
 	if !exist {
-		user = NewUser(userID)
-		l.Users[user.ID] = user
-		fmt.Println("added")
-		l.TopUsers.Insert(user.ID, -float64(user.Score))
+		// user = NewUser(userID)
+		// l.Users[user.ID] = user
+		// fmt.Println("added")
+		// l.TopUsers.Insert(user.ID, -float64(user.Score))
+
+		fmt.Println("User doesn't exist!!")
+		return
 	}
 
 	user.AddScore(score)
