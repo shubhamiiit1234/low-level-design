@@ -21,7 +21,7 @@ func NewTicTacToe() *TicTacToe {
 }
 
 func (t *TicTacToe) AddPlayer(player []*Player) {
-	t.Players = append(t.Players, player...)
+	t.Players = player
 }
 
 func (t *TicTacToe) InitializeBoard() {
@@ -94,10 +94,6 @@ func (t *TicTacToe) Validate(row, col int) bool {
 func (t *TicTacToe) CheckState(row, col, turn, totalMoves int) string {
 	symbol := t.Board.Matrix[row][col]
 	size := t.Board.size
-
-	if totalMoves == size*size {
-		return Draw
-	}
 
 	win := true
 
@@ -181,6 +177,10 @@ func (t *TicTacToe) CheckState(row, col, turn, totalMoves int) string {
 				return Player0Wins
 			}
 		}
+	}
+
+	if totalMoves == size*size {
+		return Draw
 	}
 
 	return Ongoing
