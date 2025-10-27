@@ -4,6 +4,14 @@ import (
 	"fmt"
 )
 
+/*
+	- Allows users to create wallets.
+	- Supports credit, debit, and transfer transactions.
+	- Keeps a transaction history.
+	- Ensures atomicity (no inconsistent balances).
+
+*/
+
 func main() {
 	fmt.Println("wallet system LLD!!!")
 
