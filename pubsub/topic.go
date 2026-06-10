@@ -42,9 +42,7 @@ func (t *Topic) DeRegister(observer Observer) {
 }
 
 func (t *Topic) AddMessage(msg string) {
-	t.mu.Lock()
 	t.ch <- msg
-	t.mu.Unlock()
 }
 
 func (t *Topic) Start() {
